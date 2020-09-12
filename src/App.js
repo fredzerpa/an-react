@@ -43,9 +43,9 @@ class App extends Component {
   });
 }
 
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
-  }
+componentWillUnmount() {
+  this.unsubscribeFromAuth();
+}
 
   render() {
     return (
