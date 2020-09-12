@@ -43,6 +43,8 @@ export default class Register extends Component {
             const errorMessage = error.message;
             if (errorCode === 'auth/weak-password') {
                 alert(`The password is too weak, ${errorMessage.toLowerCase()}`);
+            } else if(errorCode === 'auth/email-already-in-use') {
+                alert('This email is already in use');
             }
         }
     };

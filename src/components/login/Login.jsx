@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './login.scss';
 import FormInput from '../form-input/FormInput';
 import CustomButton from '../custom-button/CustomButton';
-import { signInWithGoogle } from '../../firebase/firebase-utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase-utils';
 
 
 export default class Login extends Component {
@@ -16,13 +16,28 @@ export default class Login extends Component {
         }
     }
 
-    handleSubmit = e => {
+    handleSubmit = async e => {
         e.preventDefault();
 
-        this.setState({
-            email: '',
-            password: ''
-        });
+        const { email, password } = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+
+            // Clear form
+            this.setState({
+                email: '',
+                password: ''
+            });
+
+        } catch (error) {
+            const errorCode = error.code;
+            if (errorCode === 'auth/wrong-password') {
+                alert('Invalid credentials');
+            } else if(errorCode === 'auth/user-not-found') {
+                alert('Invalid credentials');
+            }
+        }
     };
 
     handleChange = e => {
@@ -62,7 +77,6 @@ export default class Login extends Component {
                         <CustomButton type="submit">Login</CustomButton>
                         <CustomButton type="button" onClick={ signInWithGoogle } isGoogleAuth>Login with Google</CustomButton>
                     </div>
-
                 </form>
             </div>
         )
