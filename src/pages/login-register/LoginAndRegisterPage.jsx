@@ -1,8 +1,8 @@
 import React from 'react';
-import './loginLogoutPage.scss';
+import './loginAndRegisterPage.scss';
 import Login from '../../components/login/Login';
 
-const LoginLogoutPage = () => {
+const LoginAndRegisterPage = () => {
     return (
         <div className="login-logout">
             <Login />
@@ -10,4 +10,4 @@ const LoginLogoutPage = () => {
     )
 }
 
-export default LoginLogoutPage;
+export default LoginAndRegisterPage;
