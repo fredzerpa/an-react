@@ -28,9 +28,8 @@ export default class Register extends Component {
         
         try {
             const { user } = await auth.createUserWithEmailAndPassword(email, password);
-            console.log(`user is? ${JSON.stringify(user)}`);
 
-            await createUserProfileDocument(user, displayName);
+            await createUserProfileDocument(user, {displayName});
 
             // Clear the form
             this.setState({
@@ -40,7 +39,11 @@ export default class Register extends Component {
                 confirmPassword: ''
             });
         } catch (error) {
-            console.log(error);
+            const errorCode    = error.code;
+            const errorMessage = error.message;
+            if (errorCode === 'auth/weak-password') {
+                alert(`The password is too weak, ${errorMessage.toLowerCase()}`);
+            }
         }
     };
 
