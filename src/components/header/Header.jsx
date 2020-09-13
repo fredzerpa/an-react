@@ -1,11 +1,11 @@
 import React from 'react';
-import './header.scss';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
 import { auth } from '../../firebase/firebase-utils';
 import { connect } from 'react-redux';
 import CartIcon from '../cart-icon/CartIcon';
 import CartDropdown from '../cart-dropdown/CartDropdown';
+import { ReactComponent as Logo } from '../../assets/logo.svg';
+import './header.scss';
 
 const Header = ({ currentUser, hidden }) => {
     return (

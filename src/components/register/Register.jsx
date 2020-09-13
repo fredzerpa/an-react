@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import FormInput from '../form-input/FormInput';
 import CustomButton from '../custom-button/CustomButton';
-import './register.scss';
 import { auth, createUserProfileDocument } from '../../firebase/firebase-utils';
+import './register.scss';
 
 export default class Register extends Component {
 

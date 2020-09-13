@@ -1,6 +1,6 @@
 import React from 'react';
-import './collectionItem.scss';
 import CustomButton from '../custom-button/CustomButton';
+import './collectionItem.scss';
 
 const CollectionItem = ({ name, price, imageUrl }) => {
     return (
