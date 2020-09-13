@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import HomePage from './pages/homepage/Homepage';
 import ShopPage from './pages/shop/ShopPage';
@@ -46,15 +46,27 @@ componentWillUnmount() {
         <Switch>
           <Route exact path='/' component={ HomePage } />
           <Route path='/shop' component={ ShopPage } />
-          <Route path='/auth' component={ LoginAndRegisterPage } />
+          <Route 
+            exact 
+            path='/auth' 
+            render={() => 
+              this.props.currentUser ? (
+              <Redirect to="/" />
+              ) : (
+              <LoginAndRegisterPage />
+              )} />
         </Switch>
       </Fragment>
     );
   }
 };
 
+const mapStateToProps = ({ user }) => ({
+    currentUser: user.currentUser
+});
+
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
