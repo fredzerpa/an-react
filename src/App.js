@@ -50,7 +50,7 @@ componentWillUnmount() {
   render() {
     return (
       <Fragment>
-        <Header currentUser={ this.state.currentUser }/>
+        <Header />
         <Switch>
           <Route exact path='/' component={ HomePage } />
           <Route path='/shop' component={ ShopPage } />
